@@ -11,8 +11,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/teal_200"
         tools:context=".loginwithgmail.LoginWithGmail">
-
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/error"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/appnameicon" />
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
@@ -22,12 +29,7 @@
             android:background="@drawable/message_background"
             android:padding="4dp"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/error"
-            android:scaleType="centerCrop"
-            android:src="@drawable/loginscreen" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
