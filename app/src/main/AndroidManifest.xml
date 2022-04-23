@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.videostreamingapp">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Fbgmail">
+        <activity
+            android:name=".ui.SuggestionFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".messages.MessageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".fragments.managenetwork.followers.ManageMyNetwork"
+            android:exported="false" />
+        <activity
+            android:name=".ui.RoomActivity"
+            android:windowSoftInputMode="stateVisible"
+            android:exported="false"></activity>
+        <activity
+            android:name=".bottomnavfragment.users.UserDetailesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".username.UserNameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".loginwithgmail.LoginWithGmail"
+            android:exported="false" />
+        <activity
+            android:name=".friends.DashBoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".bottomnavfragment.notification.audiofragments.audioplayer.AudioPlayerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mainscreen.MainScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="www.youtube.com"
+                    android:mimeType="text/*" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- the host should contain your domain. The pattern should be same as it's mentioned without any special char -->
+
+                <data
+                    android:host="https://videostreamingapp.page.link"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".fcmpushnotification.FcmService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

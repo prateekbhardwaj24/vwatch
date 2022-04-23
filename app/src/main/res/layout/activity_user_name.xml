@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="userNameInputBind"
+            type="com.example.videostreamingapp.loginwithgmail.LoginViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bottomsheetscreen"
+        tools:context=".username.UserNameActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/form_background_blur"
+                android:textColorHint="@color/white"
+                app:boxStrokeColor="@null"
+                app:hintTextColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/userNameInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:hint="username"
+                    android:textColor="@color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/genderText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editLayout">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Choose gender"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/genderL"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@+id/genderText"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/maleBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/maleG"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Male"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/male" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/femaleBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/femaleG"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Female"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/female" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:layout_alignParentBottom="true"
+                android:id="@+id/doneButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:text="Done" />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

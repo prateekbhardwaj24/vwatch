@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".bottomnavfragment.createroom.video.VideoUpload"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/videoUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter url" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/videoUrl"
+        android:layout_height="wrap_content"
+        android:text="Join"/>
+
+</LinearLayout>

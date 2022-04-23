@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="binding"
+            type="com.example.videostreamingapp.ui.RoomActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.RoomActivity">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/teal_200"
+            android:elevation="8dp"
+            android:subtitleTextColor="@android:color/white"
+            android:theme="@style/Theme.Fbgmail.ToolBarStyle"
+            android:titleTextColor="@android:color/white" />
+
+
+        <RelativeLayout
+            android:id="@+id/rootViewLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar">
+
+
+            <com.google.android.youtube.player.YouTubePlayerView
+                android:id="@+id/ytPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.youtube.player.YouTubeThumbnailView
+                android:id="@+id/ytThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/ytPlayer"
+                android:scaleType="fitXY" />
+
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/ytPlayer">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/viewsTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/mini3"
+                        android:layout_marginTop="@dimen/mini3"
+                        android:layout_marginEnd="@dimen/mini3"
+                        android:layout_marginBottom="@dimen/mini3"
+                        android:background="@drawable/message_background"
+                        android:drawableStart="@drawable/ic_baseline_remove_red_eye_24"
+                        android:drawablePadding="4dp"
+                        android:paddingHorizontal="6dp"
+                        android:textColor="@color/white"
+                        android:textFontWeight="600"
+                        android:textSize="@dimen/text1"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/online_recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/mini4"
+                        android:layout_marginBottom="@dimen/mini4" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/recyclerLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_above="@id/messageEdit"
+                            android:orientation="vertical">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/messageRv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/mini4" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/messageEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:orientation="horizontal"
+                            android:padding="2dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginEnd="2dp"
+                                android:layout_weight="0.8"
+                                android:background="@drawable/message_edit_box"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/messageTypeEditText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@android:color/transparent"
+                                    android:elevation="10dp"
+                                    android:hint="@string/type_your_message"
+                                    android:inputType="textMultiLine|textCapSentences"
+                                    android:paddingStart="8dp"
+                                    android:paddingEnd="8dp"
+                                    android:textColor="@color/white"
+                                    android:textColorHint="@color/white"
+                                    tools:ignore="NestedWeights" />
+
+                                <ImageView
+                                    android:id="@+id/share_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:padding="6dp"
+                                    android:src="@drawable/ic_baseline_share_24"
+                                    app:tint="@color/white" />
+                            </LinearLayout>
+
+
+                            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                android:id="@+id/messageSendBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:elevation="0dp"
+
+                                android:src="@drawable/ic_send"
+                                app:backgroundTint="@color/messsage_send"
+                                app:borderWidth="0dp"
+                                app:elevation="0dp"
+                                app:tint="@color/white" />
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </eightbitlab.com.blurview.BlurView>
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+<variable
+    name="binding"
+    type="com.example.videostreamingapp.bottomnavfragment.createroom.CreateRoom" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".bottomnavfragment.createroom.CreateRoom">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/teal_200"
+            android:elevation="8dp"
+            android:titleTextColor="@android:color/white"
+            android:subtitleTextColor="@android:color/white"
+            android:theme="@style/Theme.Fbgmail.ToolBarStyle"
+            />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/message_background"
+            android:padding="8dp"
+            android:visibility="gone" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_below="@+id/toolbar">
+
+            <LinearLayout
+                android:id="@+id/chooseUpload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <RadioGroup
+                    android:id="@+id/privacyTypeGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <RadioButton
+                        android:id="@+id/videoUploadRadio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/message_background"
+                        android:buttonTint="@color/teal_200"
+                        android:checked="true"
+                        android:padding="6dp"
+                        android:text="@string/public_txt"
+                        android:textSize="@dimen/text2" />
+
+                    <RadioButton
+                        android:id="@+id/audioUploadRadio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/message_background"
+                        android:buttonTint="@color/teal_200"
+                        android:padding="6dp"
+                        android:text="@string/private_txt"
+
+                        android:textSize="@dimen/text2" />
+
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/videoUpload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/chooseUpload"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical"
+                android:visibility="visible"
+                tools:ignore="ExtraText">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:hintTextColor="@color/granite"
+                    app:placeholderText="https://youtube.com/abgtrv">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/videoUrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/enter_url"
+                        android:textColor="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/join"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/audioUpload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/videoUpload"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/chooseLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/message_background"
+                        android:hint="@string/enter_room_name"
+                        app:boxStrokeColor="@null">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/roomNameField"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:inputType="textCapWords"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/categoryLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TextInputLayoutStyle"                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/category"
+                        app:hintTextColor="@color/granite"
+                        app:placeholderText="Songs,Movies..">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/roomCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="textCapWords"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/createBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginBottom="100dp"
+                android:backgroundTint="@color/purple_200"
+                android:elevation="8dp"
+                android:text="@string/create_room" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</layout>

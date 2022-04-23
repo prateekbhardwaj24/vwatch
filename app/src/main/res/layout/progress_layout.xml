@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/cp_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/mini5"
+        android:layout_margin="50dp"
+        tools:ignore="UselessParent">
+
+        <ProgressBar
+            android:id="@+id/cp_bar"
+            android:layout_width="@dimen/width"
+            android:layout_height="@dimen/width" />
+
+        <TextView
+            android:id="@+id/cp_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mini4"
+            android:textFontWeight="900"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_medium"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text2"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</RelativeLayout>

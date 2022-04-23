@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".messages.MessageActivity">
+
+    <LinearLayout
+        android:id="@+id/recyclerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/editMessageLayout"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messageRv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/editMessageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="@drawable/message_background"
+        android:layout_margin="16dp"
+        android:padding="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <EditText
+                    android:id="@+id/messageTypeEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="Type your message"
+                    android:textColorHint="@color/white"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:paddingStart="8dp"
+                    android:textColor="@color/white"
+                    android:paddingEnd="8dp" />
+
+                <ImageView
+                    android:id="@+id/share_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_share_24"
+                    android:layout_gravity="center"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/messageSendBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:borderWidth="0dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:elevation="0dp"
+                    android:src="@drawable/ic_send"
+                    app:elevation="0dp"
+                    app:tint="@color/white" />
+
+            </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

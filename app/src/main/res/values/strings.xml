@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">VWatch</string>
+    <string name="api_key">AIzaSyA_s-OcNmm0QAwjlzxkM4a7Wj4lmlDRnAw</string>
+    <string name="google_sign_key">241293798293-arhnd5i63n0c7sk0oqni2j3ehvripc4v.apps.googleusercontent.com</string>
+    <string name="live">Live</string>
+    // bottom item title
+    <string name="createroom">Create</string>
+    <string name="profile">Profile</string>
+    <string name="error">error</string>
+    <string name="has_left">has left the room</string>
+    <string name="has_joined">has joined the room</string>
+    <string name="personal_info">Personal Info</string>
+    <string name="account">Account</string>
+    <string name="help">Help</string>
+    <string name="watch_tutorial">Watch Tutorial</string>
+    <string name="suggestion">Suggestion</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="about">Follow us</string>
+    <string name="logout">Logout</string>
+    <string name="provide_permission">Please provide permission from settings</string>
+    <string name="fcm_key">AAAAOC47K5U:APA91bEGD1ew2gQROU2JyTizUG2yUTFA3zTvuInZ4a7FCNt7mq-2dhGrE1hCDklR80NDhsKpKZj8of48M7CL0BV007O2ZiM6uJDO9-_DOCBrLf7-sDeKY7CvC9a2E3EsbMliQh0BqYf0</string>
+    <string name="category">Category</string>
+    <string name="video">Video</string>
+    <string name="audio">Audio</string>
+    <string name="public_txt">Public</string>
+    <string name="private_txt">Private</string>
+    <string name="enter_url">Enter youtube url</string>
+    <string name="join">Join</string>
+    <string name="enter_room_name">Enter Room Name</string>
+    <string name="create_room">Create Room</string>
+    <string name="update_title">VWatch Update Required</string>
+    <string name="sign_in_here">Sign In Here</string>
+    <string name="update">Update</string>
+    <string name="Whats_new">Whats new in v</string>
+    <string name="type_your_message">Type your message</string>
+    <string name="write_something">Write something...</string>
+
+</resources>

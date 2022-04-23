@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/close_sheet_bg"
+        android:elevation="@dimen/mini4"
+        android:layout_margin="@dimen/medium">
+
+        <ImageView
+            android:id="@+id/appIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="-20dp"
+            android:contentDescription="@string/error"
+            android:src="@drawable/appnameicon" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_below="@id/appIcon"
+            android:textSize="@dimen/text3"
+            android:textStyle="italic"
+            android:layout_centerHorizontal="true"
+            android:text="@string/update_title"/>
+
+        <TextView
+            android:id="@+id/whatsNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_below="@id/title"
+            android:textSize="@dimen/text2"
+            android:layout_marginTop="@dimen/mini2"
+            android:layout_centerHorizontal="true"
+            android:text="What's New in v1.1"/>
+
+        <TextView
+            android:id="@+id/newFeatures"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/whatsNew"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/mini4"
+            android:layout_centerHorizontal="true"
+            android:text="1. Fix Bugs"/>
+
+      <Button
+          android:id="@+id/updateBtn"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@color/black"
+          android:layout_centerHorizontal="true"
+          android:layout_below="@id/newFeatures"
+          android:layout_margin="@dimen/large"
+          android:text="@string/update"/>
+
+
+    </RelativeLayout>
+</layout>

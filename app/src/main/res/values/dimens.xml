@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="elevation">8dp</dimen>
+    <dimen name="mini1">4dp</dimen>
+    <dimen name="mini2">8dp</dimen>
+    <dimen name="mini3">8dp</dimen>
+    <dimen name="mini4">10dp</dimen>
+    <dimen name="mini5">12dp</dimen>
+    <dimen name="medium">16dp</dimen>
+    <dimen name="medium1">20dp</dimen>
+    <dimen name="max">25dp</dimen>
+    <dimen name="large">32dp</dimen>
+    <dimen name="max1">28dp</dimen>
+    <dimen name="width">100dp</dimen>
+
+    // for text
+    <dimen name="text1">10sp</dimen>
+    <dimen name="text2">14sp</dimen>
+    <dimen name="text3">16sp</dimen>
+    <dimen name="text_medium">18sp</dimen>
+</resources>

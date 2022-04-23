@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#2196F3</color>
+    <color name="grey_500">#DCF4FF</color>
+    <color name="purple_700">#2196F3</color>
+    <color name="teal_200">#2196F3</color>
+    <color name="teal_700">#756d8b</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="live_color">#F33729</color>
+    <color name="category_color">#C5C3C3</color>
+    <color name="blur_color">#60FFFFFF</color>
+    <color name="granite">#1e1e26</color>
+    <color name="granite_lite">#3F3F43</color>
+    <color name="messsage_send">#2196F3</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#fff</color>
+
+</resources>
