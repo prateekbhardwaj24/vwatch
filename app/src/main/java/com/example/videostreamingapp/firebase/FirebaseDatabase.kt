@@ -20,6 +20,7 @@ import com.example.videostreamingapp.messages.MessageData
 import com.example.videostreamingapp.model.OnlineModel
 import com.example.videostreamingapp.ui.OnlineAdapter
 import com.example.videostreamingapp.ui.RoomActivity
+import com.example.videostreamingapp.utils.Converter
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
@@ -141,16 +142,17 @@ class FirebaseDatabase(private val roomActivity: Context, private val layout: Vi
         val uName = layout.findViewById<TextView>(R.id.userNameTv)
         val image = layout.findViewById<CircleImageView>(R.id.toast_image)
         val distane = layout.findViewById<TextView>(R.id.userDistanceTv)
+        val address = layout.findViewById<TextView>(R.id.userAddress)
         val toast = Toast(roomActivity)
-
         name.text = userName
         uName.text = uniqueName
         getDistanceFromBtoA(lati, long, context).observeForever(Observer {
-
                 distane.text = "$it kms"
             Log.d("fgfhjddjjd","dis -> ${it}")
         })
-
+        Converter().getLocationByLatLong(lati,long,context).observeForever {
+            address.text = it
+        }
         Glide.with(roomActivity).load(uImage).into(image)
         toast.duration = Toast.LENGTH_SHORT
         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)

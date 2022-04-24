@@ -29,25 +29,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/mini4"
+            android:textColor="@color/white"
             android:textFontWeight="900"
             android:textSize="@dimen/text_medium"
-            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/userNameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text2"
             android:textColor="@color/white"
+            android:textSize="@dimen/text2"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/userDistanceTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text2"
             android:textColor="@color/white"
+            android:textSize="@dimen/text2"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/userAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text2"
             android:textStyle="bold" />
 
     </LinearLayout>

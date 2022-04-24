@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
     private var isDialogInitialized: Boolean = false
     private var progressDialog: CustomProgressDialog = CustomProgressDialog()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

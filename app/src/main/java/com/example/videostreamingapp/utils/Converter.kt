@@ -3,6 +3,7 @@ package com.example.videostreamingapp.utils
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
@@ -65,7 +66,6 @@ class Converter() {
         context: Context
     ): MutableLiveData<String> {
         var result: MutableLiveData<String> = MutableLiveData()
-        var location: String = ""
         val geocoder = Geocoder(context, Locale.getDefault())
         val addresses: List<Address?>
         try {
@@ -82,14 +82,19 @@ class Converter() {
                 val country: String = addresses[0]!!.countryName
                 val postalCode: String = addresses[0]!!.postalCode
                 val knownName: String = addresses[0]!!.featureName
-                location = if (subLocality.isNotEmpty()) {
-                    "$locality, $country"
-                } else {
-                    "$address, $country"
-                }
-                result.postValue(location)
+//               val location = if (subLocality.isNotEmpty()) {
+//                    "$locality $state($country)"
+////                   Log.d("addhjks","$locality, $state, $country")
+//                } else {
+//                    "$address, $state($country)"
+//
+//                }
+                result.postValue("location")
+               // Log.d("addhjks"," $state, $country")
             }
+          //  Log.d("addhjks","out $addresses")
         } catch (e: Exception) {
+          //  Log.d("addhjks","outk ${e.localizedMessage}")
         }
 
         return result

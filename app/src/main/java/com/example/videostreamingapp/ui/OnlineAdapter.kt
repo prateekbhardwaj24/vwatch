@@ -80,7 +80,6 @@ class OnlineAdapter(private val firebaseService: FirebaseDatabase) :
                                     long,
                                     context
                                 )
-
                             }
                         }
                     }
@@ -102,7 +101,6 @@ class OnlineAdapter(private val firebaseService: FirebaseDatabase) :
             ) !=
             PackageManager.PERMISSION_GRANTED
         ) {
-
             ActivityCompat.requestPermissions(
                 context as Activity,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 101
