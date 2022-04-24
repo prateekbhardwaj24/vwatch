@@ -72,7 +72,6 @@ class OnlineAdapter(private val firebaseService: FirebaseDatabase) :
                             val lati = snapshot.child("lati").value.toString()
                             val long = snapshot.child("long").value.toString()
                             if (checkGpsStatus()) {
-
                                 firebaseService.setToast(
                                     name,
                                     uniqueName,
@@ -103,8 +102,7 @@ class OnlineAdapter(private val firebaseService: FirebaseDatabase) :
             ) !=
             PackageManager.PERMISSION_GRANTED
         ) {
-            val intent1 = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-            context.startActivity(intent1)
+
             ActivityCompat.requestPermissions(
                 context as Activity,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 101
@@ -119,10 +117,16 @@ class OnlineAdapter(private val firebaseService: FirebaseDatabase) :
         val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val gpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
         return if (gpsStatus) {
-            true
-        } else {
             checkLocaPerm()
+        } else {
+            openLocaSetting()
         }
+    }
+
+    private fun openLocaSetting(): Boolean {
+        val intent1 = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+        context.startActivity(intent1)
+        return false
     }
 
     private fun setUserData(id: String?, itemView: View) {

@@ -12,7 +12,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         tools:context=".bottomnavfragment.profile.Profile">
 
 
@@ -245,13 +244,6 @@
                                     android:padding="@dimen/elevation"
                                     android:src="@drawable/instagram" />
 
-                                <ImageView
-                                    android:id="@+id/linkedin"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:contentDescription="@string/error"
-                                    android:padding="@dimen/elevation"
-                                    android:src="@drawable/linkedin_logo" />
 
                                 <ImageView
                                     android:id="@+id/twitter"
@@ -270,6 +262,7 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="8dp"
                         android:layout_margin="8dp"
+                        android:layout_marginBottom="50dp"
                         app:cardElevation="2dp">
 
                         <LinearLayout
@@ -302,7 +295,6 @@
                                     android:text="@string/logout"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/text2"
-                                    android:layout_marginBottom="50dp"
                                     android:textStyle="bold" />
 
                             </LinearLayout>

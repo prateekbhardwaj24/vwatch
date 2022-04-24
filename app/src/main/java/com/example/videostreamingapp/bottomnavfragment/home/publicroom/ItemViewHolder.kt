@@ -48,12 +48,13 @@ class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
        // setBackgroundColor(position,changeBackLayout,context)
         val video_thumbnail = itemView.findViewById<ImageView>(R.id.video_thumbnail)
 
-
-        Glide.with(context).load(data.video_thumbnail).into(video_thumbnail)
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.deleteVideo(data)
         }
+        Glide.with(context).load(data.video_thumbnail).into(video_thumbnail)
+
         itemView.setOnClickListener(View.OnClickListener {
+
             val intent = Intent(context, RoomActivity::class.java)
             intent.putExtra("url", data.videoId)
             intent.putExtra("isLive", "true")

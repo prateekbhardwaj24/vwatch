@@ -168,6 +168,7 @@ class RoomActivity : YouTubeBaseActivity() {
             typeOfRoom = intent.getStringExtra("typeOfRoom")!!
         }
 
+
         onlineAdapter = OnlineAdapter(firebaseService)
         binding.onlineRecyclerView.adapter = onlineAdapter
         firebaseDao = HomeFirebaseDao()
@@ -206,6 +207,7 @@ class RoomActivity : YouTubeBaseActivity() {
 //        })
 
     }
+
 
     private fun openShareBottomSheet() {
         sheetDialog.show()
@@ -434,6 +436,9 @@ class RoomActivity : YouTubeBaseActivity() {
             firebaseDatabaseService.ref.child("PublicRooms")
                 .child(currentNode).child(firebaseDatabaseService.VIEWS).setValue(v.toString())
                 .await()
+
+            //delete if not exist in private or public node
+          //  deleteIfNotExists()
         }
 
 
@@ -451,6 +456,50 @@ class RoomActivity : YouTubeBaseActivity() {
 //                )
 //            }
 //        }
+    }
+
+    private fun deleteIfNotExists() {
+        //check node exists or not
+        firebaseDatabaseService.ref.child("CurrentlyPlaying").child(currentNode).addListenerForSingleValueEvent(object:ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if (snapshot.exists()){
+                    firebaseDatabaseService.ref.child("PrivateRooms").child(firebaseDatabaseService.firebaseAuth.currentUser!!.uid).child("AllRooms").child(currentNode).addListenerForSingleValueEvent(object:ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if (!snapshot.exists()){
+                                firebaseDatabaseService.ref.child("PublicRooms").child(currentNode).addListenerForSingleValueEvent(object:ValueEventListener{
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        if (!snapshot.exists()){
+                                            deleteCurrentNode(currentNode)
+                                            startActivity(Intent(this@RoomActivity,MainScreenActivity::class.java))
+                                            finish()
+                                        }
+
+                                    }
+
+                                    override fun onCancelled(error: DatabaseError) {
+                                        // TODO("Not yet implemented")
+                                    }
+
+                                })
+
+                            }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            //  TODO("Not yet implemented")
+                        }
+
+                    })
+
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                // TODO("Not yet implemented")
+            }
+
+        })
+
     }
 
     private fun fetchChatOfUsers() {
@@ -576,7 +625,7 @@ class RoomActivity : YouTubeBaseActivity() {
                                 isPlay = 1
                                 player.seekToMillis(0)
                                 player.pause()
-                                deleteCurrentNode(currentNode)
+                              //  deleteCurrentNode(currentNode)
                                 startActivity(
                                     Intent(
                                         this@RoomActivity,

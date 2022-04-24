@@ -6,9 +6,11 @@ import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.location.Location
+import android.location.LocationManager
 import android.net.*
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -78,6 +80,7 @@ class MainScreenActivity : AppCompatActivity() {
             fetchLocation()
         }
 
+
         if (firebaseDatabaseService.firebaseAuth.currentUser != null) {
             CoroutineScope(Dispatchers.IO).launch {
                 if (intent.extras != null) {
@@ -107,7 +110,22 @@ class MainScreenActivity : AppCompatActivity() {
         // check internet connection
         checkInternet()
     }
+    private fun checkGpsStatus() {
+        val locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val gpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+         if (gpsStatus) {
+            fetchLocation()
+        } else {
+            openLocaSetting()
+             fetchLocation()
+        }
+    }
 
+    private fun openLocaSetting() {
+        val intent1 = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+         startActivity(intent1)
+
+    }
     private fun checkForUpdate() {
         firebaseRemoteConfig = Firebase.remoteConfig
         val configSettings = remoteConfigSettings {
@@ -262,7 +280,7 @@ class MainScreenActivity : AppCompatActivity() {
     }
     fun checkInternet(){
         var dilogBox = CustomProgressDialog()
-        dilogBox.show(this@MainScreenActivity)
+        dilogBox.show(this@MainScreenActivity,"Internet connection lost!","s")
         val networkRequest = NetworkRequest.Builder()
             .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
             .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)

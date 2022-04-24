@@ -34,5 +34,6 @@
     <string name="Whats_new">Whats new in v</string>
     <string name="type_your_message">Type your message</string>
     <string name="write_something">Write something...</string>
+    <string name="internet">Make sure internet is connected</string>
 
 </resources>

@@ -31,28 +31,20 @@
         <activity
             android:name=".messages.MessageActivity"
             android:exported="false" />
-        <activity
-            android:name=".fragments.managenetwork.followers.ManageMyNetwork"
-            android:exported="false" />
+
         <activity
             android:name=".ui.RoomActivity"
             android:windowSoftInputMode="stateVisible"
             android:exported="false"></activity>
-        <activity
-            android:name=".bottomnavfragment.users.UserDetailesActivity"
-            android:exported="false" />
+
         <activity
             android:name=".username.UserNameActivity"
             android:exported="false" />
         <activity
             android:name=".loginwithgmail.LoginWithGmail"
             android:exported="false" />
-        <activity
-            android:name=".friends.DashBoardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".bottomnavfragment.notification.audiofragments.audioplayer.AudioPlayerActivity"
-            android:exported="false" />
+
+
         <activity
             android:name=".mainscreen.MainScreenActivity"
             android:exported="true">

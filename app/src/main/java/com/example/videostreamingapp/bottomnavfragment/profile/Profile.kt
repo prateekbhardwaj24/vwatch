@@ -19,6 +19,7 @@ import com.example.videostreamingapp.loginwithgmail.LoginWithGmail
 import com.example.videostreamingapp.ui.SuggestionFormActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 
 
 class Profile : Fragment() {
@@ -63,9 +64,7 @@ class Profile : Fragment() {
                 )
             }
         }
-        binding.linkedin.setOnClickListener {
 
-        }
         binding.twitter.setOnClickListener {
             try {
                 startActivity(
@@ -90,7 +89,17 @@ class Profile : Fragment() {
             startActivity(Intent.createChooser(emailIntent, "Contact help"))
         }
         binding.tutorial.setOnClickListener {
-
+            var intent: Intent? = null
+            try {
+                intent = Intent(Intent.ACTION_VIEW)
+                intent.setPackage("com.google.android.youtube")
+                intent.data = Uri.parse("https://www.youtube.com/channel/UCIq2GnRMEd20b2uF-WSt1zw/featured")
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse("https://www.youtube.com/channel/UCIq2GnRMEd20b2uF-WSt1zw/featured")
+                startActivity(intent)
+            }
         }
         binding.suggestions.setOnClickListener {
             startActivity(Intent(requireContext(), SuggestionFormActivity::class.java))
@@ -105,6 +114,7 @@ class Profile : Fragment() {
                                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                                     .build()
                             ).signOut()
+                            FirebaseAuth.getInstance().signOut()
                             startActivity(Intent(requireContext(), LoginWithGmail::class.java))
                             requireActivity().finish()
                         }

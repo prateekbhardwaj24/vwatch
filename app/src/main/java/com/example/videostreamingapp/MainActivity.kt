@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(loginActivityIntent)
             finish()
         }
-        checkInternet()
+       // checkInternet()
     }
 
     private fun getShareableLink() {
@@ -128,6 +128,7 @@ class MainActivity : AppCompatActivity() {
                         intent.putExtra("title", title)
                         intent.putExtra("video_time", duration)
                         startActivity(intent)
+                        finish()
                     }
                 }
 
@@ -139,7 +140,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun checkInternet(){
         var dilogBox = CustomProgressDialog()
-        dilogBox.show(this)
+        dilogBox.show(this@MainActivity,"Internet connection lost!","s")
         val networkRequest = NetworkRequest.Builder()
             .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
             .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
@@ -176,7 +177,6 @@ class MainActivity : AppCompatActivity() {
 
         val connectivityManager = getSystemService(ConnectivityManager::class.java) as ConnectivityManager
         connectivityManager.requestNetwork(networkRequest, networkCallback)
-
     }
 
 
