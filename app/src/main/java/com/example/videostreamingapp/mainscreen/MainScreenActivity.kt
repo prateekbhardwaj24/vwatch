@@ -11,7 +11,6 @@ import android.net.*
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +18,6 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.example.videostreamingapp.R
 import com.example.videostreamingapp.bottomnavfragment.createroom.CreateRoom
 import com.example.videostreamingapp.bottomnavfragment.home.Home
@@ -43,7 +41,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.net.InetAddress
-import java.net.UnknownHostException
 
 
 class MainScreenActivity : AppCompatActivity() {
@@ -54,6 +51,7 @@ class MainScreenActivity : AppCompatActivity() {
     private lateinit var currentLocation: Location
     private var lat: String? = null
     private var long: String? = null
+    private var isDialogInitialized: Boolean = false
     lateinit var firebaseRemoteConfig: FirebaseRemoteConfig
     private lateinit var dialogBinding: UpdateDialogBinding
 
@@ -110,22 +108,24 @@ class MainScreenActivity : AppCompatActivity() {
         // check internet connection
         checkInternet()
     }
+
     private fun checkGpsStatus() {
         val locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val gpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-         if (gpsStatus) {
+        if (gpsStatus) {
             fetchLocation()
         } else {
             openLocaSetting()
-             fetchLocation()
+            fetchLocation()
         }
     }
 
     private fun openLocaSetting() {
         val intent1 = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-         startActivity(intent1)
+        startActivity(intent1)
 
     }
+
     private fun checkForUpdate() {
         firebaseRemoteConfig = Firebase.remoteConfig
         val configSettings = remoteConfigSettings {
@@ -148,7 +148,7 @@ class MainScreenActivity : AppCompatActivity() {
         val packageName: String = BuildConfig.APPLICATION_ID
         dialogBinding = UpdateDialogBinding.inflate(layoutInflater)
         builder.setView(dialogBinding.root)
-        dialogBinding.whatsNew.text = resources.getString(R.string.Whats_new)+latest_version_code
+        dialogBinding.whatsNew.text = resources.getString(R.string.Whats_new) + latest_version_code
         dialogBinding.updateBtn.setOnClickListener {
             try {
                 startActivity(
@@ -178,7 +178,7 @@ class MainScreenActivity : AppCompatActivity() {
 //            }
 //        }))
 
-        val alertDialog:AlertDialog  = builder.create();
+        val alertDialog: AlertDialog = builder.create();
         alertDialog.show()
         alertDialog.setCancelable(false)
     }
@@ -252,25 +252,28 @@ class MainScreenActivity : AppCompatActivity() {
             }
         }
     }
+
     fun isNetworkAvailable(context: MainScreenActivity): MutableLiveData<Boolean> {
-        var result:MutableLiveData<Boolean> = MutableLiveData()
+        var result: MutableLiveData<Boolean> = MutableLiveData()
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (connectivityManager.activeNetworkInfo != null && connectivityManager.activeNetworkInfo!!
-                .isConnected){
+                .isConnected
+        ) {
             result.postValue(true)
-        }else{
+        } else {
             result.postValue(false)
         }
         return result
     }
+
     fun isInternetAvailable(): MutableLiveData<Boolean> {
-        var result:MutableLiveData<Boolean> = MutableLiveData()
+        var result: MutableLiveData<Boolean> = MutableLiveData()
         CoroutineScope(Dispatchers.IO).launch {
             val address: InetAddress = InetAddress.getByName("www.google.com")
-            if (!address.equals("")){
+            if (!address.equals("")) {
                 result.postValue(true)
-            }else{
+            } else {
                 result.postValue(false)
             }
 
@@ -278,9 +281,10 @@ class MainScreenActivity : AppCompatActivity() {
 
         return result
     }
-    fun checkInternet(){
+
+    fun checkInternet() {
         var dilogBox = CustomProgressDialog()
-        dilogBox.show(this@MainScreenActivity,"Internet connection lost!","s")
+//        dilogBox.show(this@MainScreenActivity, "Internet connection lost!", "s")
         val networkRequest = NetworkRequest.Builder()
             .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
             .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
@@ -291,10 +295,12 @@ class MainScreenActivity : AppCompatActivity() {
             // network is available for use
             override fun onAvailable(network: Network) {
                 super.onAvailable(network)
-
-                if (dilogBox.dialog.isShowing){
-                    dilogBox.dialog.dismiss()
+                if (isDialogInitialized) {
+                    if (dilogBox.dialog.isShowing) {
+                        dilogBox.dialog.dismiss()
+                    }
                 }
+
             }
 
             // Network capabilities have changed for the network
@@ -303,18 +309,20 @@ class MainScreenActivity : AppCompatActivity() {
                 networkCapabilities: NetworkCapabilities
             ) {
                 super.onCapabilitiesChanged(network, networkCapabilities)
-                val unmetered = networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED)
+                val unmetered =
+                    networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED)
             }
 
             // lost network connection
             override fun onLost(network: Network) {
                 super.onLost(network)
-                dilogBox.show(this@MainScreenActivity,"Internet connection lost!","s")
-
+                dilogBox.show(this@MainScreenActivity, "Internet connection lost!", "s")
+                isDialogInitialized = true
             }
         }
 
-        val connectivityManager = getSystemService(ConnectivityManager::class.java) as ConnectivityManager
+        val connectivityManager =
+            getSystemService(ConnectivityManager::class.java) as ConnectivityManager
         connectivityManager.requestNetwork(networkRequest, networkCallback)
 
     }

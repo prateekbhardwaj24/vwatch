@@ -2,18 +2,15 @@ package com.example.videostreamingapp
 
 import android.content.Intent
 import android.location.Location
-import android.media.MediaPlayer
 import android.net.*
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-
 import com.example.videostreamingapp.loginwithgmail.LoginWithGmail
 import com.example.videostreamingapp.mainscreen.MainScreenActivity
 import com.example.videostreamingapp.ui.CustomProgressDialog
 import com.example.videostreamingapp.ui.RoomActivity
 import com.example.videostreamingapp.username.UserNameActivity
-import com.example.videostreamingapp.utils.Converter
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
@@ -22,7 +19,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
-import org.apache.commons.net.ntp.TimeStamp.getCurrentTime
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,17 +28,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var currentLocation: Location
     private var lat: String? = null
     private var long: String? = null
+    private var isDialogInitialized: Boolean = false
     private var progressDialog: CustomProgressDialog = CustomProgressDialog()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       // progressDialog.show(this, "Please wait...")
+        // progressDialog.show(this, "Please wait...")
         mAuth = FirebaseAuth.getInstance()
         val user = mAuth.currentUser
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        Log.d("timehai","${ServerValue.TIMESTAMP.values} and substraction by 5 ${ServerValue.TIMESTAMP - 5}")
+        Log.d(
+            "timehai",
+            "${ServerValue.TIMESTAMP.values} and substraction by 5 ${ServerValue.TIMESTAMP - 5}"
+        )
         getShareableLink()
         if (user != null) {
             val checkUserExistRTDB =
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                         startActivity(loginActivityIntent)
                         finish()
                     }
-                  //  progressDialog.dialog.dismiss()
+                    //  progressDialog.dialog.dismiss()
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             })
 
         } else {
-           // progressDialog.dialog.dismiss()
+            // progressDialog.dialog.dismiss()
             val loginActivityIntent = Intent(this, LoginWithGmail::class.java)
             startActivity(loginActivityIntent)
             finish()
@@ -138,9 +138,10 @@ class MainActivity : AppCompatActivity() {
 
             })
     }
-    fun checkInternet(){
+
+    fun checkInternet() {
         var dilogBox = CustomProgressDialog()
-        dilogBox.show(this@MainActivity,"Internet connection lost!","s")
+
         val networkRequest = NetworkRequest.Builder()
             .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
             .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
@@ -151,11 +152,11 @@ class MainActivity : AppCompatActivity() {
             // network is available for use
             override fun onAvailable(network: Network) {
                 super.onAvailable(network)
-
-                if (dilogBox.dialog.isShowing){
-                    dilogBox.dialog.dismiss()
+                if (isDialogInitialized) {
+                    if (dilogBox.dialog.isShowing) {
+                        dilogBox.dialog.dismiss()
+                    }
                 }
-
             }
 
             // Network capabilities have changed for the network
@@ -164,18 +165,20 @@ class MainActivity : AppCompatActivity() {
                 networkCapabilities: NetworkCapabilities
             ) {
                 super.onCapabilitiesChanged(network, networkCapabilities)
-                val unmetered = networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED)
+                val unmetered =
+                    networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED)
             }
 
             // lost network connection
             override fun onLost(network: Network) {
                 super.onLost(network)
-                dilogBox.show(this@MainActivity,"Internet connection lost!","s")
-
+                dilogBox.show(this@MainActivity, "Internet connection lost!", "s")
+                isDialogInitialized = true
             }
         }
 
-        val connectivityManager = getSystemService(ConnectivityManager::class.java) as ConnectivityManager
+        val connectivityManager =
+            getSystemService(ConnectivityManager::class.java) as ConnectivityManager
         connectivityManager.requestNetwork(networkRequest, networkCallback)
     }
 
